@@ -13,12 +13,13 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
     <div class="container-fluid">
-        <a class="navbar-brand h1" href={{ route('editors.index') }}>Editors</a>
+        <a class="navbar-brand h1" href={{ route('autors.index') }}>Autors</a>
         <div class="justify-end ">
             <div class="col ">
-                <a class="btn btn-sm btn-success" href={{ route('editors.create') }}>Afegir Editorial</a>
+                <a class="btn btn-sm btn-success" href={{ route("autors.create") }}>Afegir Autor</a>
             </div>
         </div>
+    </div>
 </nav>
 <div class="container">
     @if (session('success'))
@@ -31,24 +32,24 @@
             <thead>
             <tr>
                 <th>Codi</th>
-                <th>Editor</th>
+                <th>Autor</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
             </thead>
-            @foreach ($editors as $editor)
+            @foreach ($autors as $autor)
                 <tr>
                     <td scope="col">
-                        {{ $editor->ID_EDIT }}
+                        {{ $autor->ID_AUT }}
                     </td>
                     <td scope="col">
-                        {{ $editor->NOM_EDIT }}
+                        {{ $autor->NOM_AUT }}
                     </td>
                     <td scope="col">
-                        <a href="{{ route('editors.edit', $editor->ID_EDIT) }}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{{ route('autors.edit', $autor->ID_AUT) }}" class="btn btn-primary btn-sm">Editar</a>
                     </td>
                     <td scope="col">
-                        <form action="{{ route('editors.destroy', $editor->ID_EDIT) }}" method="post">
+                        <form action="{{ route('autors.destroy', $autor->ID_AUT) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Esborrar</button>
@@ -57,9 +58,8 @@
                 </tr>
             @endforeach
         </table>
-        {{  $editors->links('pagination::bootstrap-4')  }}
+        {{  $autors->links('pagination::bootstrap-4')  }}
     </div>
 </div>
 </body>
-
 </html>

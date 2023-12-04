@@ -18,30 +18,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix'=>'autors'], function() {
-
-Route::get('/', [AutorController::class, 'index']);
-Route::get('/{id}', [AutorController::class, 'show']);
-});
+//Route::group(['prefix'=>'autors'], function() {
+//
+//Route::get('/', [AutorController::class, 'index']);
+//Route::get('/{id}', [AutorController::class, 'show']);
+//});
 
 Route::group(
-    ['prefix' => 'editors'],
+    ['prefix' => 'autors'],
     // CRUD de la taula editors. Feim servir controladors.
     function () {
         // llista totes les editorials
-        Route::get('',[AutorController::class, 'index'])->name('editors.index');
+        Route::get('',[AutorController::class, 'index'])->name("autors.index");
 
-        Route::post('', function () {
+        Route::get('/create', function () {
             return "CREAR";
-        })->name('editors.create');
+        })->name('autors.create');
 
         // Edita la editorial id
-        Route::get('/{id}',[AutorController::class,'edit'])->name('autors.edit');
+        Route::get('/{id}',[AutorController::class,'update'])->name('autors.edit');
 
         // Esborra la editarial id
-        Route::delete('', function () {
+        Route::delete('/delete', function () {
             return "DELETE";
-        })->name('editors.destroy');
+        })->name('autors.destroy');
 
         // Modifica la editorial id
         Route::put('/{id}', [AutorController::class,'modifica'])->name('editors.update');
